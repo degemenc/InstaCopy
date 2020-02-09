@@ -18,7 +18,8 @@ import {
   Image,
   Modal,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Dimensions
 } from 'react-native';
 import Post from './components/Post';
 import Story from './components/Story';
@@ -56,7 +57,7 @@ const App = () => {
 
 
 
-  let iconSize = 28;
+  let iconSize = Dimensions.get('window').width*0.064;
 
   const renderPost = itemData => {
     return (
@@ -66,16 +67,16 @@ const App = () => {
 
   const renderStoryThumbnail = itemData => {
     return (
-      <View style={{ justifyContent: 'center', alignItems: 'center', width: iconSize + 48, marginRight: 8 }}>
+      <View style={{ justifyContent: 'center', alignItems: 'center', width: iconSize*2.5, marginRight: 8 }}>
         <TouchableOpacity
           onPress={() => {
             setActiveStory(itemData.item.id);
             setModalOpen(true);
           }}
         >
-          <Image source={itemData.item.profileImage} style={{ height: iconSize + 48, width: iconSize + 48, borderRadius: 100 }}></Image>
+          <Image source={itemData.item.profileImage} style={{ height: iconSize*2.5, width: iconSize*2.5, borderRadius: 100 }}></Image>
         </TouchableOpacity>
-        <Text numberOfLines={1} style={{ textAlign: 'center', padding: 4 }}>{itemData.item.username}</Text>
+        <Text numberOfLines={1} style={{ textAlign: 'center', padding: 4, fontSize: iconSize*12/28 }}>{itemData.item.username}</Text>
       </View>
     )
   }

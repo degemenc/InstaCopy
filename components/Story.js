@@ -11,11 +11,12 @@ import {
   FlatList,
   Dimensions,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  KeyboardAvoidingView
 } from 'react-native';
 
 const Story = props => {
-  let iconSize = 28;
+  let iconSize = Dimensions.get('window').width*0.064;
   let data = props.data;
   return (
     <View style={{ flex: 1 }}>
@@ -34,7 +35,7 @@ const Story = props => {
         </View>
 
         <View style={styles.ownerBar}>
-          <Image source={data.profileImage} style={{ height: iconSize + 12, width: iconSize + 12, borderRadius: 100 }}></Image>
+          <Image source={data.profileImage} style={{ height: iconSize*1.5, width: iconSize*1.5, borderRadius: 100 }}></Image>
           <Text style={{ paddingLeft: 12, fontWeight: 'bold', color: 'white' }}>{data.username}</Text>
           <Text style={{ paddingLeft: 8, color: 'white' }}>{data.storyDate}</Text>
           <TouchableOpacity style={{ width: iconSize, height: iconSize, position: 'absolute', right: 8 }} onPress={props.closeModal}>

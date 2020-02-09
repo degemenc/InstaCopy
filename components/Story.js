@@ -39,7 +39,7 @@ const Story = props => {
   return (
     <View style={{ flex: 1 }}>
 
-      <View style={{ flex: 1, marginTop: 16 }}>
+      <View style={{ flex: 1 }}>
         <Image source={data.content} style={{ borderRadius: 16, width: '100%', height: '100%' }} />
 
         <View style={{ height: '100%', position: 'absolute', width: '20%', right: 0, top: 0, bottom: 0 }}>

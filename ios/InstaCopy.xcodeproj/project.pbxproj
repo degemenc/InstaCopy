@@ -18,6 +18,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* InstaCopyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* InstaCopyTests.m */; };
 		312797022D64D9931E6DEE83 /* libPods-InstaCopyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82588F11797F6359D0FC5019 /* libPods-InstaCopyTests.a */; };
 		865695D86884B45FB750626F /* libPods-InstaCopy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBEE892B479A763F86C9CB30 /* libPods-InstaCopy.a */; };
+		E20B51A4F2FA49B7A91982D5 /* pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 003143F98A274A7D8E0A288C /* pacifico.ttf */; };
 		F45E73491F16ACEBB2504EAC /* libPods-InstaCopy-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2EB2A79209A5CD22E069D42 /* libPods-InstaCopy-tvOS.a */; };
 		FF16D4DE825B6E6CDD78FF81 /* libPods-InstaCopy-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A14D04F5EF4EBBA159238D5 /* libPods-InstaCopy-tvOSTests.a */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		003143F98A274A7D8E0A288C /* pacifico.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = pacifico.ttf; path = ../assets/fonts/pacifico.ttf; sourceTree = "<group>"; };
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* InstaCopyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstaCopyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -161,7 +163,6 @@
 				0D86E29689153A04D9F74C1B /* Pods-InstaCopyTests.debug.xcconfig */,
 				F863FACC2325CEAD23E5FBD1 /* Pods-InstaCopyTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -181,6 +182,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				30C1642D28EA03F41EF41366 /* Pods */,
+				A97C260EE36E460EAEBB4DFE /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -196,6 +198,14 @@
 				2D02E4901E0B4A5D006451C7 /* InstaCopy-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A97C260EE36E460EAEBB4DFE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				003143F98A274A7D8E0A288C /* pacifico.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,7 +295,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -308,6 +318,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -338,6 +349,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				E20B51A4F2FA49B7A91982D5 /* pacifico.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -137,7 +137,7 @@ const App = () => {
         <View style={{ padding: 8, alignItems: 'center' }}>
           <Image source={require('./assets/icons/camera.png')} style={{ width: iconSize, height: iconSize }} />
         </View>
-        <Text style={{ flex: 1 }}>Instagram</Text>
+        <Text style={{ flex: 1, fontFamily: 'pacifico', textAlign: 'center', fontSize: iconSize*.8 }}>Instagram</Text>
         <View style={{ padding: 8, alignItems: 'center' }}>
           <Image source={require('./assets/icons/send.png')} style={{ width: iconSize, height: iconSize }} />
         </View>

@@ -13,7 +13,6 @@ import {
   Dimensions
 } from 'react-native';
 import FullWidthImage from 'react-native-fullwidth-image';
-import AutoHeightImage from 'react-native-auto-height-image';
 
 
 let iconSize = Dimensions.get('window').width * 0.064;

@@ -35,8 +35,8 @@ const Post = props => {
     <View style={styles.container}>
       <View style={styles.ownerBar}>
         <Image source={props.data.profileImage} style={{ height: iconSize + 12, width: iconSize + 12, borderRadius: 100 }}></Image>
-        <Text style={{ paddingLeft: 12 }}>{props.data.username}</Text>
-        <Image source={require('../assets/icons/options.png')} style={{ width: iconSize, height: iconSize, position: 'absolute', right: 8 }} />
+        <Text style={{ paddingLeft: 12, flex: 1, fontWeight: 'bold' }}>{props.data.username}</Text>
+        <Image source={require('../assets/icons/options.png')} style={{ width: iconSize, height: iconSize}} />
 
       </View>
       <FullWidthImage source={props.data.content} />

@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -15,12 +15,19 @@ import {
   Text,
   StatusBar,
   FlatList,
-  Image
+  Image,
+  Modal,
+  TouchableOpacity,
+  TextInput
 } from 'react-native';
 import Post from './components/Post';
+import Story from './components/Story';
+import { act } from 'react-test-renderer';
 
 
 const App = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [activeStory, setActiveStory] = useState(0);
 
   let marilynProfileImage = 'https://images.findagrave.com/photos/2012/149/725_133835273812.jpg';
   let mickjaggerProfileImage = 'https://www.inforum.com/incoming/3974800-2iwhmy-072419.F.FF.WAYBACK/alternates/BASE_LANDSCAPE/072419.F.FF.WAYBACK';
@@ -34,15 +41,21 @@ const App = () => {
 
   const renderPost = itemData => {
     return (
-      <Post data={itemData.item}>
-      </Post>
+      <Post data={itemData.item} />
     )
   }
 
   const renderStoryThumbnail = itemData => {
     return (
       <View style={{ justifyContent: 'center', alignItems: 'center', width: iconSize + 48, marginRight: 8 }}>
-        <Image source={itemData.item.profileImage} style={{ height: iconSize + 48, width: iconSize + 48, borderRadius: 100 }}></Image>
+        <TouchableOpacity
+          onPress={() => {
+            setActiveStory(itemData.item.id);
+            setModalOpen(true);
+          }}
+        >
+          <Image source={itemData.item.profileImage} style={{ height: iconSize + 48, width: iconSize + 48, borderRadius: 100 }}></Image>
+        </TouchableOpacity>
         <Text numberOfLines={1} style={{ textAlign: 'center', padding: 4 }}>{itemData.item.username}</Text>
       </View>
     )
@@ -69,23 +82,49 @@ const App = () => {
   ];
 
   storiesData = [
-    {id: 1, username: 'Your Story', profileImage: {uri: marilynProfileImage}},
-    {id: 2, username: 'johnlennon', profileImage: {uri: johnlennonProfileImage}},
-    {id: 3, username: 'axlrose', profileImage: {uri: axlroseProfileImage}},
-    {id: 4, username: 'mickjagger', profileImage: {uri: mickjaggerProfileImage}},
-    {id: 5, username: 'mjackson', profileImage: {uri: mjacksonProfileImage}},
-    {id: 6, username: 'jimmypage', profileImage: {uri: jimmypageProfileImage}},
-
+    { id: 0, username: 'Your Story', profileImage: { uri: marilynProfileImage }, content: { uri: 'https://images.unsplash.com/photo-1496449903678-68ddcb189a24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60' } },
+    { id: 1, username: 'johnlennon', storyDate: '3h', profileImage: { uri: johnlennonProfileImage }, content: { uri: 'https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60' } },
+    { id: 2, username: 'axlrose', profileImage: { uri: axlroseProfileImage }, content: { uri: 'https://images.unsplash.com/photo-1485550409059-9afb054cada4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60' } },
+    { id: 3, username: 'mickjagger', profileImage: { uri: mickjaggerProfileImage }, content: { uri: 'https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60' } },
+    { id: 4, username: 'mjackson', profileImage: { uri: mjacksonProfileImage }, content: { uri: 'https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60' } },
+    { id: 5, username: 'jimmypage', profileImage: { uri: jimmypageProfileImage }, content: { uri: 'https://images.unsplash.com/photo-1501426026826-31c667bdf23d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60' } },
   ]
+
+  function closeModal() {
+    setModalOpen(false);
+  }
+
+  const previousStory = () => {
+    if (activeStory != 0) {
+      setActiveStory(activeStory - 1);
+    }
+  }
+
+  const nextStory = () => {
+    if (activeStory < storiesData.length - 1) {
+      setActiveStory(activeStory + 1);
+    } else {
+      setActiveStory(0);
+      closeModal();
+    }
+  }
+
+
 
   return (
     <SafeAreaView style={styles.container}>
+      <Modal animationType='slide' style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} visible={modalOpen}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
+          <Story previousStory={previousStory} nextStory={nextStory} closeModal={() => { closeModal(); }} data={storiesData[activeStory]} />
+        </SafeAreaView>
+      </Modal>
+
       <View style={styles.topbar}>
-        <View style={{ flex: .1, padding: 8, alignItems: 'center' }}>
+        <View style={{ padding: 8, alignItems: 'center' }}>
           <Image source={require('./assets/icons/camera.png')} style={{ width: iconSize, height: iconSize }} />
         </View>
-        <Text style={{ flex: .8 }}>Instagram</Text>
-        <View style={{ flex: .1, padding: 8, alignItems: 'center' }}>
+        <Text style={{ flex: 1 }}>Instagram</Text>
+        <View style={{ padding: 8, alignItems: 'center' }}>
           <Image source={require('./assets/icons/send.png')} style={{ width: iconSize, height: iconSize }} />
         </View>
       </View>
@@ -96,8 +135,8 @@ const App = () => {
           data={postData}
           keyExtractor={(item, index) => { return '' + item.id; }}
           renderItem={renderPost}
-          ListHeaderComponent = {renderListHeader_StoriesList}
-          />
+          ListHeaderComponent={renderListHeader_StoriesList}
+        />
       </View>
 
       <View style={styles.navigationBar}>
@@ -105,18 +144,19 @@ const App = () => {
         <Image source={require('./assets/icons/search.png')} style={{ width: iconSize, height: iconSize }} />
         <Image source={require('./assets/icons/add.png')} style={{ width: iconSize, height: iconSize }} />
         <Image source={require('./assets/icons/like-empty.png')} style={{ width: iconSize, height: iconSize }} />
-        <Image source={require('./assets/icons/send.png')} style={{ width: iconSize, height: iconSize }} />
+        <Image source={{uri: marilynProfileImage}} style={{ height: iconSize, width: iconSize, borderRadius: 100 }}></Image>
+
       </View>
     </SafeAreaView >
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    margin: 0,
-    backgroundColor: '#FAFAFA'
+    margin: 0
   },
   topbar: {
     flex: .06,

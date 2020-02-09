@@ -47,7 +47,7 @@ const Story = props => {
 
       </View>
 
-      <View style={styles.messageBar}>
+      <KeyboardAvoidingView style={styles.messageBar} keyboardVerticalOffset={iconSize*2} behavior='padding' enabled>
         <View style={{ padding: 8, alignItems: 'center' }}>
           <Image source={require('../assets/icons/camera-white.png')} style={{ width: iconSize, height: iconSize }} />
 
@@ -60,7 +60,7 @@ const Story = props => {
           <Image source={require('../assets/icons/send-white.png')} style={{ width: iconSize, height: iconSize }} />
 
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
 }
@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%',
-    padding: 8
+    padding: 8,
+    marginBottom: 8
   },
   ownerBar: {
     flexDirection: 'row',

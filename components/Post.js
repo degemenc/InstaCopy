@@ -29,7 +29,7 @@ const Post = props => {
           data={itemData.item.subcomments}
           keyExtractor={(item, index) => { return '' + item.id; }}
           renderItem={itemData2 => {
-            return (<Text style={{ fontSize: iconSize * 16 / 28 }}><Text style={{ fontWeight: 'bold' }}>   |   {itemData2.item.username}</Text> {itemData2.item.content}</Text>);
+            return (<Text style={{ fontSize: iconSize * 16 / 28 }}><Text style={{ fontWeight: 'bold' }}><Text style={{color: '#F2F2F2'}}>   |   </Text>{itemData2.item.username}</Text> {itemData2.item.content}</Text>);
           }}
         />
       </View>
